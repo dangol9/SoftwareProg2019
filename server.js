@@ -7,4 +7,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, "web_store", "index.html"));
 })
 app.use(express.static('web_store'));
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(process.env.PORT || PORT, () => {
+  console.log("Server started", PORT);
+});
