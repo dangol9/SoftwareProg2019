@@ -1,0 +1,48 @@
+.my-header {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background: white;
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.body {
+  margin: 0;
+}
+.header-logo{
+  width: 60px;
+}
+.header-buttons{
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+.content{
+  display: flex;
+  justify-content: space-around;
+}
+.item{
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 5px;
+}
+.item:hover{
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+  transition: .5s all;
+}
+.item image{
+  width: 300px;
+}
+.item-name{
+  color: red;
+  font-size: 18px;
+}
+.item-price{
+  color: black;
+  font-size: 12px;
+}
+.content a{
+  text-decoration: none;
+}
