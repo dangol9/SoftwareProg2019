@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
+<script type="text/javascript">
+  const x = window.location;
+  const urlParams = new URLSearchParams(window.location.search);
+  const title = urlParams.get("title");
+  const cost = urlParams.get("cost");
+  const src = urlParams.get("src");
+  alert(`Title: ${title} cost: ${cost} path: ${src}`)
+</script>
 <head>
   <link rel="stylesheet" type="text/css" href="design.css">
   <meta charset="utf-8">
@@ -11,12 +18,12 @@
   <div class="my-header">
     <a href="index.html"><img class="header-logo" src="./images/logo.jpeg" alt=""></a>
     <div class="header-buttons">
-      <button class=""></button>
-      <button class=""></button>
+      <button class="">Login/Singup</button>
+      <button class="">My Cart</button>
     </div>
   </div>
   <div class="content">
-
+    <p>Empty page</p>
   </div>
 </body>
 

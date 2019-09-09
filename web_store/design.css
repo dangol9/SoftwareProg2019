@@ -38,11 +38,16 @@
 .item-name{
   color: red;
   font-size: 18px;
+  font-family: arial;
 }
 .item-price{
   color: black;
   font-size: 12px;
+  font-family: arial;
 }
 .content a{
   text-decoration: none;
+}
+p {
+  font-family: arial;
 }
