@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<script type="text/javascript">
-  const x = window.location;
-  const urlParams = new URLSearchParams(window.location.search);
-  const title = urlParams.get("title");
-  const cost = urlParams.get("cost");
-  const src = urlParams.get("src");
-  alert(`Title: ${title} cost: ${cost} path: ${src}`)
-</script>
+<script src="./item.js"></script>
 <head>
   <link rel="stylesheet" type="text/css" href="design.css">
   <meta charset="utf-8">
@@ -22,8 +15,7 @@
       <button class="">My Cart</button>
     </div>
   </div>
-  <div class="content">
-    <p>Empty page</p>
+  <div class="content" id="item-body">
   </div>
 </body>
 

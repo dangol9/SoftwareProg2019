@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
+<!-- <script src="./item.js"></script> -->
+<script src="./utils.js"></script>
+<script src="./itemsList.js"></script>
 <head>
   <link rel="stylesheet" type="text/css" href="design.css">
   <meta charset="utf-8">
-  <title>Prax1</title>
+  <title>RP2019</title>
 </head>
 
 <body>
+
+
+
+
   <div class="my-header">
     <a href="index.html"><img class="header-logo" src="./images/logo.jpeg" alt=""></a>
     <div class="header-buttons">
@@ -15,31 +21,17 @@
       <button class="">My Cart</button>
     </div>
   </div>
-  <div class="content">
 
-    <a href="./item-page.html?title=Samsung TV&cost=1000&src=./images/tv1.jpg">
-      <div class="item">
-        <img src="./images/tv1.jpg" alt="">
-        <div class="item-name">Samsung TV</div>
-        <div class="item-price">1000 eur</div>
-      </div>
-    </a>
+<div class="category-wrapper">
+  <p>Select category:</p>
+  <select id = "category-dropdown" name="category">
+  <option value="tvs">Tvs</option>
+  <option value="phones" selected>Phones</option>
+  </select>
+</div>
 
-    <a href="./item-page.html?title=Philips TV&cost=1250&src=./images/tv2.jpg">
-      <div class="item">
-        <img src="./images/tv2.jpg" alt="">
-        <div class="item-name">Philips TV</div>
-        <div class="item-price">1250 eur</div>
-      </div>
-    </a>
 
-    <a href="./item-page.html?title=Thompson TV&cost=900&src=./images/tv3.jpg">
-      <div class="item">
-        <img src="./images/tv3.jpg" alt="">
-        <div class="item-name">Thompson TV</div>
-        <div class="item-price">900 eur</div>
-      </div>
-    </a>
+  <div class="content" id = "item-list">
 
   </div>
 </body>

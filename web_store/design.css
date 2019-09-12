@@ -21,11 +21,15 @@
 .content{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .item{
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 5px;
+  width: 300px;
+  margin-bottom: 25px;
+
 }
 .item:hover{
   cursor: pointer;
@@ -50,4 +54,15 @@
 }
 p {
   font-family: arial;
+}
+.itemContainer{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    padding: 20px 0px;
+}
+.itemContainer .item-image{
+  width: 200px;
+}
+.category-wrapper{
+  padding: 25px;
 }
