@@ -6,6 +6,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
+  position: sticky;
+  top: 0;
 }
 .body {
   margin: 0;
@@ -29,6 +31,7 @@
   padding: 5px;
   width: 300px;
   margin-bottom: 25px;
+  height:350px;
 
 }
 .item:hover{
@@ -57,12 +60,19 @@ p {
 }
 .itemContainer{
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
-    width: 90%;
+    width: 1000px;
+    margin: 0 auto;
     padding: 20px 0px;
+
 }
 .itemContainer .item-image{
-  width: 200px;
+  max-width: 200px;
+  min-width: 200px;
+  min-height: 200px;
+  max-height: 200px;
+  margin: 0 auto;
 }
 .category-wrapper{
   padding: 25px;
+  margin: 0 auto;
 }

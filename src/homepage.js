@@ -1,4 +1,4 @@
-/*jshint esversion: 6*/
+const utils = require("./utils.js");
 
 //const utils2 = require("./utils2");
 
@@ -26,7 +26,7 @@ function createItems(){
     items = tvs;
   }
   items.forEach((phone) =>{
-    const element = createItemElement(phone);
+    const element = utils.createItemElement(phone);
     root.append(element);
   })
 }
@@ -40,11 +40,18 @@ function setupCategoryListener(){
   });
 }
 
-
-
-
-window.addEventListener("load", () => {
+function setup(){
+  const root = document.getElementById("item-list");
+  if(!root) return;
   createItems();
   setupCategoryListener();
+}
 
-});
+module.exports = {
+  setup,
+}
+// window.addEventListener("load", () => {
+//   createItems();
+//   setupCategoryListener();
+//
+// });
