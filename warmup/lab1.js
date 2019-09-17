@@ -1,4 +1,4 @@
-
+/*jshint esversion: 6 */
 
 /**
  * Task 1
@@ -28,7 +28,7 @@ const generateRandomItemList = n => {
     items.push(item);
   }
   return items;
-}
+};
 // utility function, use it
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
