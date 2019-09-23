@@ -16,7 +16,7 @@ componentDidMount(){
   this.fetchItems();
 }
 fetchItems = () => {
-  fetch("http://localhost:9000/api/items")
+  fetch("http://localhost:3000/api/items") //:9000
   .then(res =>{
     console.log("res", res);
     return res.json();
