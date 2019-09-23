@@ -47,7 +47,7 @@ fetchItems = () => {
     return (
       <>
         <Header/>
-        <select onChange={this.handleDropdown}>
+        <select onChange={this.handleDropdown.bind(this)}>
         <option value="phones">Phones</option>
         <option value="tvs">TVs</option>
         </select>
