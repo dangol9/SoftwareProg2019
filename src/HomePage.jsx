@@ -16,7 +16,7 @@ componentDidMount(){
   this.fetchItems();
 }
 fetchItems = () => {
-  fetch("http://localhost:9000/api/items") //:3000
+  fetch("/api/items")
   .then(res =>{
     console.log("res", res);
     return res.json();
@@ -27,15 +27,17 @@ fetchItems = () => {
       items
     });
   })
-  .catch(err => {console.log("error:", err);});
+  .catch(err =>
+    {console.log("error:", err);
+  });
 };
 
-  handleDropdown = (event) => {
+  handleDropdown(event){
     console.log(event.target.value);
     this.setState({
       selectedCategory: event.target.value
     });
-  };
+  }
 
   getVisibleItems = () => {
     return this.state.items.filter(item => item.category === this.state.selectedCategory);
