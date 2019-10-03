@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Header.jsx";
-//import {phones} from "./mydatabase";
 import PropTypes from "prop-types";
 
 

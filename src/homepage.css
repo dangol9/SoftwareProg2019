@@ -1,0 +1,31 @@
+.itemFilters-wrapper{
+  display:flex;
+  margin: 0 auto;
+  padding: 25px;
+  padding-bottom: 50px;
+}
+.itemFilters-wrapper > div{
+  margin-right: 50px;
+}
+.items-found{
+  text-align: right;
+  font-size: 17px;
+}
+
+
+
+
+
+@media only screen and (max-width: 950px) {
+   .cf7_custom_style_1 {
+      padding-left: 10%;
+      padding-right: 10%;
+   }
+}
+
+@media only screen and (max-width: 600px) {
+   .cf7_custom_style_1 {
+      padding-left: 0;
+      padding-right: 0;
+   }
+}
