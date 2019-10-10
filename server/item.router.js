@@ -1,21 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const DB = require("./database.js");
 const mongoose = require("mongoose");
+const Item = require("./item.model.js");
 
 
 
-const itemSchema = new mongoose.Schema({
-  imgSrc: { type: String, required: true},
-  title: { type: String, required: true},
-  price: { type: Number, required: true},
-  category: { type: String, required: true},
-  createdAt: { type: Date, default: Date.now},
+// DELETE
+router.delete("/api/items/:itemId", (req, res) => {
+  Item.deleteOne({"_id" : mongoose.Types.ObjectId(req.params.itemId)}, (err)=>{
+    if (err) {console.log("IT FAILED", err); return res.send(500);}
+    console.log("save made!");
+    return res.send(204);
+  });
 });
 
-const Item = mongoose.model("Item", itemSchema);
-
-
+//POST
 router.post("/api/items", (req, res) => {
   const props = {
     imgSrc: "google.com",
@@ -23,6 +22,8 @@ router.post("/api/items", (req, res) => {
     price: 200,
     category: "phones",
   };
+
+//CREATION
   const item1 = new Item(props);
   item1.save( err => {
     if(err){
@@ -35,7 +36,7 @@ router.post("/api/items", (req, res) => {
   });
 });
 
-
+//GET ITEMID
 router.get("/api/items/:itemId", (req, res)=>{
   Item.findById(req.params.itemId, function (err, item) {
     if(err) {
@@ -49,8 +50,7 @@ router.get("/api/items/:itemId", (req, res)=>{
 
 
 
-
-
+//GET ITEMS
 router.get("/api/items", (req, res)=>{
   Item.find({}, function(err, items){
     if(err) {

@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {userIcon, cartIcon} from "./icons.js";
+import {userIcon, cartIcon} from "../icons.js";
 import "./header.css";
 const Header = () => {
   return (
@@ -9,10 +9,10 @@ const Header = () => {
     <img className="header-logo" src="/images/logo.jpeg"/>
     </Link>
       <div className={"header-buttons"}>
-        <div className={"header-button"}>
+        <Link className={"header-button"} to={"/login"}>
         <img src={userIcon} style={{height: 35}} />
         <div className={"header-button-text"}>Login/<br/>Register</div>
-    </div>
+    </Link>
     <div className={"header-button"}>
     <img src={cartIcon} style={{height: 35}} />
     <div className={"header-button-text"}>Cart</div>

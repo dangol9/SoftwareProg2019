@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./Header.jsx";
 import PropTypes from "prop-types";
 
 
@@ -33,7 +32,6 @@ fetchItem = () => {
   render(){
     return (
       <>
-        <Header/>
         <div className={"itemContainer"}>
         <img src={this.state.imgSrc} />
         <div className = {"item-name"}>{this.state.title}</div>

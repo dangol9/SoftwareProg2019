@@ -1,10 +1,9 @@
 import React from "react";
-import Header from "./Header.jsx";
-import ItemList from "./ItemList.jsx";
-import Checkbox from "./Checkbox.jsx";
+import ItemList from "../components/ItemList.jsx";
+import Checkbox from "../components/Checkbox.jsx";
 import PropTypes from "prop-types";
 import "./homepage.css";
-import SortDropdown from "./SortDropdown.jsx";
+import SortDropdown from "../components/SortDropdown.jsx";
 
 
 
@@ -82,7 +81,7 @@ fetchItems = () => {
     const items = this.getVisibleItems();
     return (
       <>
-        <Header/>
+
         <ItemFilters
         allCategories = {this.state.allCategories}
         handleDropdown = {this.handleDropdown}
