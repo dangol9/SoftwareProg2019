@@ -1,7 +1,14 @@
 import React from "react";
 import "./login.css";
-
+import PropTypes from "prop-types";
 class LoginPage extends React.PureComponent {
+
+static propTypes = {
+  history: PropTypes.object.isRequired,
+  onLogin: PropTypes.func.isRequired,
+};
+
+
 
 constructor(props){
   super(props);
@@ -14,15 +21,18 @@ constructor(props){
 handleSubmit = (event) => {
   event.preventDefault();
   console.log("submit", this.state);
-  fetch("/api/users/login", {
+  fetch("/api/v1/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(this.state),
   })
-  .then(res=>{
-    console.log("response", res);
+  .then(res => res.json())
+  .then(({token, user})=>{
+    console.log("response", token, user);
+    this.props.onLogin({token, user});
+    this.props.history.push(`/users/${user._id}`);
   })
   .catch(err =>{
     console.log("Error", err);
@@ -30,7 +40,6 @@ handleSubmit = (event) => {
 };
 
 handleChange = (e) => {
-//  console.log("handle changed", e.target.name, e.target.value);
   this.setState({
     [e.target.name]: e.target.value,
   });
@@ -43,7 +52,7 @@ handleChange = (e) => {
       <div className="login-wrap">
           <h2>Login</h2>
               <form className="form" onSubmit={this.handleSubmit}>
-                <input type="text" placeholder="email" name="email" value = {this.state.email} onChange={this.handleChange}/>
+                <input type="email" placeholder="email" name="email" value = {this.state.email} onChange={this.handleChange}/>
                   <input type="password" placeholder="password" name="password" value = {this.state.password} onChange={this.handleChange}/>
                   <button> Sign in </button>
                   <a href="/signup"> <h3> Dont have an account? Register </h3></a>

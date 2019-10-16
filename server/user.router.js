@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 
 // GETS ALL USERS
-router.get("/api/users", (req, res) => {
+router.get("/users", (req, res) => {
   User.find({}, (err, docs) => {
     if(err) return handleError(err, res);
     res.status(200).json(docs);
@@ -13,33 +13,9 @@ router.get("/api/users", (req, res) => {
 });
 
 
-//LOGIN
-router.post("/api/users/login", (req, res)=>{
-  console.log("body", req.body);
-  User.login(req.body)
-  .then( user =>{
-    res.json(user);
-  })
-  .catch(err =>{
-    handleError(err, res);
-  });
-});
-
-//creates new user
-router.post("/api/users/signup", (req, res)=>{
-
-  User.signup(req.body)
-  .then( user => {
-      res.status(200).json(user);
-  })
-  .catch(err =>{
-    return handleError(err, res);
-  });
-});
-
 
 //DELETE ALL USERS
-router.delete("/api/users", (req, res) =>{
+router.delete("/users", (req, res) =>{
   User.deleteMany({}, (err, docs) =>{
     if(err) return handleError(err, res);
     console.log("Success delete all users");
@@ -51,7 +27,7 @@ router.delete("/api/users", (req, res) =>{
 
 function handleError(err, res){
   console.log(err);
-  res.sendStatus(500);
+  res.status(500).send(err);
 }
 
 
