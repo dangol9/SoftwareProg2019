@@ -3,8 +3,9 @@ import ItemList from "../components/ItemList.jsx";
 import Checkbox from "../components/Checkbox.jsx";
 import PropTypes from "prop-types";
 import "./homepage.css";
-import SortDropdown from "../components/SortDropdown.jsx";
 
+import SortDropdown from "../components/SortDropdown.jsx";
+import {getItems} from "../actions/ItemsActions";
 
 
 
@@ -23,11 +24,7 @@ componentDidMount(){
   this.fetchItems();
 }
 fetchItems = () => {
-  fetch("/api/v1/items")
-  .then(res =>{
-    console.log("res", res);
-    return res.json();
-  })
+  getItems()
   .then(items => {
   //  console.log("items", items);
     this.setState({
@@ -39,21 +36,27 @@ fetchItems = () => {
   });
 };
 
-  handleDropdown = (event) => {
-     if(this.isSelected(event.target.name)){
-       const clone = this.state.selectedCategories.slice();
-       const index = this.state.selectedCategories.indexOf(event.target.name);
-       clone.splice(index, 1);
-       this.setState({
-         selectedCategories: clone
-       });
-     } else {
-       this.setState({
-         selectedCategories: this.state.selectedCategories.concat([event.target.name])
-       });
+  handleCategoriesSelect = (event) => {
+    const categoryName = event.target.name;
+     if(this.isSelected(categoryName)) {
+       return this.unselectCategory(categoryName);
      }
+     this.selectCategory(categoryName);
+  };
 
-  }
+  selectCategory = (categoryName) => {
+    this.setState({
+      selectedCategories: this.state.selectedCategories.concat([categoryName])
+    });
+  };
+
+
+  unselectCategory = (categoryName) => {
+    const newArr = this.state.selectedCategories.filter( cn => cn !== categoryName);
+    this.setState({
+      selectedCategories: newArr
+    });
+  };
 
   getVisibleItems = () => {
     return this.state.items
@@ -84,7 +87,7 @@ fetchItems = () => {
 
         <ItemFilters
         allCategories = {this.state.allCategories}
-        handleDropdown = {this.handleDropdown}
+        handleDropdown = {this.handleCategoriesSelect}
         isSelected = {this.isSelected}
         />
         <div className={"items-settings"}>

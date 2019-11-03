@@ -3,32 +3,32 @@ import {Link} from "react-router-dom";
 import {userIcon, cartIcon} from "../icons.js";
 import "./header.css";
 import PropTypes from "prop-types";
+import authConsumer from "./authConsumer.jsx";
 
-
-const Header = ({token, user}) => {
-  console.log(token);
+const Header = ({user}) => {
   return (
-    <div className="my-header">
-    <Link to={"/"}>
-    <img className="header-logo" src="/images/logo.jpeg"/>
-    </Link>
 
-      <div className={"header-buttons"}>
+        <div className="my-header">
+        <Link to={"/"}>
+        <img className="header-logo" src="/images/logo.jpeg"/>
+        </Link>
 
-      {user.email && <WelcomeIcon user = {user}/>}
+          <div className={"header-buttons"}>
 
-      {!user.email && <LoginRegisterIcon />}
+          {user.email && <WelcomeIcon user = {user}/>}
 
-    <div className={"header-button"}>
-    <img src={cartIcon} style={{height: 35}} />
-    <div className={"header-button-text"}>Cart</div>
-  </div>
-  </div>
-  </div>
+          {!user.email && <LoginRegisterIcon />}
+
+        <Link to={"/checkout/cart"} className={"header-button"}>
+        <img src={cartIcon} style={{height: 35}} />
+        <div className={"header-button-text"}>Cart</div>
+            </Link>
+          </div>
+        </div>
   );
 };
 
-Header.propTypes = {
+ Header.propTypes = {
   token: PropTypes.string,
   user: PropTypes.object,
 };
@@ -52,4 +52,4 @@ WelcomeIcon.propTypes = {
 };
 
 
-export default Header;
+export default authConsumer(Header);

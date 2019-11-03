@@ -4,6 +4,12 @@
 	 margin: 10px 0;
 	 position: relative;
 }
+.designBox {
+	width: 300px;
+	border: 15 px solid green;
+	padding: 50px;
+	margin:20px;
+}
  .inputGroup label {
 	 padding: 12px 30px;
 	 width: 100%;

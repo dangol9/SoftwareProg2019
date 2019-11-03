@@ -1,6 +1,7 @@
 import React from "react";
 import "./login.css";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 class SignUpPage extends React.PureComponent {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -47,7 +48,7 @@ handleSubmit = (event) => {
                   <input type="email" placeholder="email" name={"email"} onChange={this.handleChange} />
                   <input type="password" placeholder="password" name={"password"} onChange={this.handleChange}/>
                   <button> Register </button>
-                  <a href="/login"> <h3> Already have an account?</h3></a>
+                  <Link to="/login"> <h3> Already have an account?</h3></Link>
                   </form>
                   </div>
       </div>
