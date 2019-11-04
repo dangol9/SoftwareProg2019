@@ -14,7 +14,7 @@ componentDidMount() {
   getItems()
   .then(items => {
     this.setState({
-      rows: items.slice(0,4)
+      rows: items.slice(0,6)
     });
   })
   .catch(err=>{
@@ -46,7 +46,7 @@ render(){
     <tr>
     </tr>
     <tr>
-      <div className={"submit-button"}>Vormista ost<FaAngleRight/></div>
+      <div className={"submit-button"}>Continue<FaAngleRight/></div>
     </tr>
   </div>
 </div>
