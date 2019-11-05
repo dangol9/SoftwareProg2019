@@ -26,7 +26,6 @@ componentDidMount(){
 fetchItems = () => {
   getItems()
   .then(items => {
-  //  console.log("items", items);
     this.setState({
       items
     });

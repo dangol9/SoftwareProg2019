@@ -7,13 +7,25 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'static/bundle.js'
   },
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin([
       {
-      from: "public"
+      from: "public/index.html",
+      }
+    ]),
+    new CopyPlugin([
+      {
+      from: "public/design.css",
+      to: "static/design.css"
+      }
+    ]),
+    new CopyPlugin([
+      {
+        from: "public/images",
+        to: "static/images"
       }
     ])
   ],

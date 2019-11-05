@@ -5,7 +5,10 @@
   "scripts": {
     "build": "webpack",
     "start": "node server/server.js",
-    "start:dev": "webpack-dev-server --open --mode=\"development\""
+    "start:dev": "webpack-dev-server --open --mode=\"development\"",
+    "start:prelive": "npm run build && PORT=3001 npm run start",
+    "start:backend": "nodemon ./server/server.js",
+    "start:frontend": "webpack-dev-server --open --mode=\"development\""
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +21,7 @@
     "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.3",
+    "nodemon": "^1.19.4",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.9.0",
