@@ -12,7 +12,7 @@
   display: flex;
   padding: 20px 0;
   border-bottom: 1px solid #d41d46;
-  
+
 }
 
 .cart .row:first-child {
@@ -81,18 +81,7 @@
   padding: 5px 0;
 }
 
-.cart-summary .submit-button {
-  background: #d41d46;
-  font-size: large;
-  text-transform: uppercase;
-  color: white;
-  font-weight: bold;
-  padding: 10px 20px;
-  float: right;
-  border: 0;
-  display: flex;
-  align-items: center;
-}
+
 
 .submit-button {
   padding-right: 105px;

@@ -1,52 +1,62 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {getItems} from "../actions/ItemsActions";
-import {FaRegTrashAlt, FaAngleRight} from "react-icons/fa";
+import {FaRegTrashAlt} from "react-icons/fa";
 import "../components/cart.css";
+import FancyButton from "../components/FancyButton.jsx";
+import {connect} from "react-redux";
+import {removeItem} from "../store/store.js";
+
 
 
 class CartPage extends React.PureComponent {
-  state = {
-  rows: []
+  static propTypes = {
+    cart: PropTypes.arrayOf(PropTypes.shape(ItemProps)).isRequired,
+    dispatch: PropTypes.func.isRequired,
+  };
+
+  calcNumbers = () => {
+    const VAT = 20;
+    const sum = Math.round(this.props.cart.reduce((acc, item) => acc + item.price, 0));
+    const tax = Math.round(sum / 100 * VAT);
+    return {
+      sum, tax
+    };
+  };
+
+handleTrash = (_id) => {
+   this.props.dispatch(removeItem(_id));
 };
-
-componentDidMount() {
-  getItems()
-  .then(items => {
-    this.setState({
-      rows: items.slice(0,6)
-    });
-  })
-  .catch(err=>{
-    console.log(err);
-  });
-
-}
 
 
 render(){
+  const {sum, tax} = this.calcNumbers();
   return (
     <div className={"spacer"}>
     <h1>My Cart</h1>
       <div className={"box cart"}>
         <Table
-          rows={this.state.rows}
+          onTrash = {this.handleTrash}
+          rows={this.props.cart}
         />
     </div>
     <div className={"box cart-summary"}>
       <table>
         <tbody>
         <div className={"table-box"}>
-        <tr><td>Summa:</td><td>200</td></tr>
-        <tr><td>Maksud:</td><td>200</td></tr>
-        <tr><td>Kokku:</td><td>200</td></tr>
+        <tr><td>Summa:</td><td>{sum}</td></tr>
+        <tr><td>Maksud:</td><td>{tax}</td></tr>
+        <tr><td>Kokku:</td><td>{tax + sum}</td></tr>
         </div>
         </tbody>
     </table>
     <tr>
     </tr>
     <tr>
-      <div className={"submit-button"}>Continue<FaAngleRight/></div>
+    <td>
+      <FancyButton onClick={() => console.log("buy")}>
+      Continue
+      </FancyButton>
+    </td>
     </tr>
   </div>
 </div>
@@ -54,7 +64,7 @@ render(){
   }
 }
 
-const Table = ({rows}) => {
+const Table = ({rows, onTrash}) => {
   return (
     <div className={"table"}>
       <div className={"row"}>
@@ -64,16 +74,17 @@ const Table = ({rows}) => {
         <div className={"cell cell-right"}>Summa</div>
         <div className={"cell cell--small"}></div>
       </div>
-        {rows.map ( (row) => <Row key={row._id} {...row} />)}
+        {rows.map ( (row, index) => <Row onTrash={onTrash} key={index} {...row} />)}
     </div>
   );
 };
 
 Table.propTypes ={
   rows: PropTypes.array.isRequired,
+  onTrash: PropTypes.func.isRequired,
 };
 
-const Row = ({title, imgSrc, category, price}) => {
+const Row = ({_id, title, imgSrc, category, price, onTrash}) => {
   return(
     <div className = {"row"}>
       <div className = {"cell"}>
@@ -89,7 +100,10 @@ const Row = ({title, imgSrc, category, price}) => {
       {price}
     </div>
     <div className = {"cell cell--small cell--center"}>
-      <FaRegTrashAlt/>
+      <FaRegTrashAlt
+      title = {"delete"}
+      className={"hover--opacity"}
+      onClick={() => onTrash(_id)}/>
     </div>
   </div>
   );
@@ -105,6 +119,15 @@ export const ItemProps = {
 
 
 
-Row.propTypes = ItemProps;
+Row.propTypes = {
+  ...ItemProps,
+  onTrash: PropTypes.func.isRequired,
+};
 
-export default CartPage;
+const mapStateToProps = (store) => {
+  return {
+    cart: store.cart
+  };
+};
+
+export default connect(mapStateToProps)(CartPage);

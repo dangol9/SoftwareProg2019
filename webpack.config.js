@@ -9,6 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'static/bundle.js'
   },
+
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin([
@@ -34,6 +35,17 @@ module.exports = {
       {
             test:/\.css$/i,
             use:['style-loader','css-loader'],
+      },
+      {
+   test: /\.(woff|woff2)$/i,
+   use: [
+        {
+          loader: 'file-loader',
+            options:{
+              outputPath: "static/fonts"
+            }
+          },
+        ],
       },
 
       {

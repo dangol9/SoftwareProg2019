@@ -5,3 +5,9 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.hover--opacity:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.2s;
+}

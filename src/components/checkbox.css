@@ -62,7 +62,7 @@
 	 opacity: 1;
 }
  .inputGroup input:checked ~ label:after {
-	 background-color: red;
+	 background-color: #d41d46;;
 	 border-color: black;
 }
  .inputGroup input {
