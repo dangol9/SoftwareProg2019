@@ -18,7 +18,7 @@
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
   transition: .5s all;
 }
-.item image{
+.item .image{
   width: 200px;
   height: 200px;
 }
@@ -32,6 +32,7 @@
   font-size: 16px;
   font-family: arial;
   font-weight: bold;
+  padding-top: 10px;
 }
 .content a{
   text-decoration: none;

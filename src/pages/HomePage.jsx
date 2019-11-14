@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "./homepage.css";
 import SortDropdown from "../components/SortDropdown.jsx";
 import {connect} from "react-redux";
-import {getItems} from "../store/store";
+import {getItems} from "../store/actions";
 import {ItemProps} from "./CartPage.jsx";
 
 

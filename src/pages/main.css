@@ -11,3 +11,19 @@
   opacity: 0.5;
   transition: all 0.2s;
 }
+.aroundInfo {
+  border: 1px solid #0000002e;
+  height: 100px;
+  padding-top:15px;
+  padding-bottom: 15px;
+}
+.field {
+  padding: 5px 15px;
+  border: 1px solid #0000002e;
+  background-color: #80808017;
+  border-radius: 5px;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  height: 20px;
+}

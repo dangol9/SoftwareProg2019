@@ -6,7 +6,7 @@ const Item = require("./item.model.js");
 
 
 // DELETE
-router.delete("/items/:itemId", (req, res) => {
+router.delete("/:itemId", (req, res) => {
   Item.deleteOne({"_id" : mongoose.Types.ObjectId(req.params.itemId)}, (err)=>{
     if (err) {console.log("IT FAILED", err); return res.send(500);}
     console.log("save made!");
@@ -15,7 +15,7 @@ router.delete("/items/:itemId", (req, res) => {
 });
 
 //POST
-router.post("/items", (req, res) => {
+router.post("/", (req, res) => {
   const props = {
     imgSrc: "google.com",
     title: "phone red",
@@ -37,7 +37,7 @@ router.post("/items", (req, res) => {
 });
 
 //GET ITEMID
-router.get("/items/:itemId", (req, res)=>{
+router.get("/:itemId", (req, res)=>{
   Item.findById(req.params.itemId, function (err, item) {
     if(err) {
       console.log("error", err);
@@ -51,7 +51,7 @@ router.get("/items/:itemId", (req, res)=>{
 
 
 //GET ITEMS
-router.get("/items", (req, res)=>{
+router.get("/", (req, res)=>{
   Item.find({}, function(err, items){
     if(err) {
       console.log("error", err);

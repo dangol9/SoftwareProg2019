@@ -34,7 +34,7 @@ const Item = (props) => {
       <div className = {"item"}>
       <img src={props.imgSrc}/>
       <div className="item-name">{props.title}</div>
-      <div className="item-price">{props.price}</div>
+      <div className="item-price">Price: {props.price} eurot</div>
       </div>
     </Link>
 

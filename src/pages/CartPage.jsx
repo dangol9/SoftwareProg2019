@@ -4,8 +4,8 @@ import {FaRegTrashAlt} from "react-icons/fa";
 import "../components/cart.css";
 import FancyButton from "../components/FancyButton.jsx";
 import {connect} from "react-redux";
-import {removeItem} from "../store/store.js";
-
+import {removeItem} from "../store/actions";
+import {toast} from "react-toastify";
 
 
 class CartPage extends React.PureComponent {
@@ -25,6 +25,7 @@ class CartPage extends React.PureComponent {
 
 handleTrash = (_id) => {
    this.props.dispatch(removeItem(_id));
+   toast.success("Toode eemaldatud");
 };
 
 
@@ -43,9 +44,9 @@ render(){
       <table>
         <tbody>
         <div className={"table-box"}>
-        <tr><td>Summa:</td><td>{sum}</td></tr>
-        <tr><td>Maksud:</td><td>{tax}</td></tr>
-        <tr><td>Kokku:</td><td>{tax + sum}</td></tr>
+        <tr><td>Summa:</td><td>{sum} eur</td></tr>
+        <tr><td>Maksud:</td><td>{tax} eur</td></tr>
+        <tr><td>Kokku:</td><td>{tax + sum} eur</td></tr>
         </div>
         </tbody>
     </table>

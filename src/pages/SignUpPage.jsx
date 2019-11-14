@@ -2,6 +2,9 @@ import React from "react";
 import "./login.css";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
+
+
 class SignUpPage extends React.PureComponent {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -30,6 +33,7 @@ handleSubmit = (event) => {
       this.props.history.push("/login");
     })
     .catch(err =>{
+      toast.err("Registreerimise ebaynnestus");
       console.log("Error", err);
     });
   };

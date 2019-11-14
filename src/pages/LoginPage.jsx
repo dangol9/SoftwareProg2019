@@ -2,11 +2,15 @@ import React from "react";
 import "./login.css";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-class LoginPage extends React.PureComponent {
+import {connect} from "react-redux";
+import {userUpdate} from "../store/actions";
+import {toast} from "react-toastify";
 
+
+class LoginPage extends React.PureComponent {
 static propTypes = {
   history: PropTypes.object.isRequired,
-  onLogin: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 
@@ -21,7 +25,6 @@ constructor(props){
 
 handleSubmit = (event) => {
   event.preventDefault();
-  //console.log("submit", this.state);
   fetch("/api/v1/auth/login", {
     method: "POST",
     headers: {
@@ -30,13 +33,17 @@ handleSubmit = (event) => {
     body: JSON.stringify(this.state),
   })
   .then(res => res.json())
-  .then(({token, user})=>{
-    this.props.onLogin({token, user});
-    this.props.history.push(`/users/${user._id}`);
-  })
+  .then(this.handleSuccess)
   .catch(err =>{
     console.log("Error", err);
+    toast.error("Logimine ebaynnestus");
   });
+};
+
+handleSuccess = ({ user}) => {
+  this.props.dispatch(userUpdate(user));
+  this.props.history.push(`/users/${user._id}`);
+
 };
 
 handleChange = (e) => {
@@ -63,4 +70,4 @@ handleChange = (e) => {
     );
   }
 }
-export default LoginPage;
+export default connect()(LoginPage);
