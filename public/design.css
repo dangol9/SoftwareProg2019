@@ -18,11 +18,15 @@
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
   transition: .5s all;
 }
-.item .image{
+.item img{
   width: 200px;
   height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .item-name{
+  margin-top: 20px;
   color: red;
   font-size: 18px;
   font-family: arial;
@@ -32,8 +36,8 @@
   font-size: 16px;
   font-family: arial;
   font-weight: bold;
-  padding-top: 10px;
 }
+
 .content a{
   text-decoration: none;
 }
@@ -42,6 +46,7 @@ p {
   font-family: arial;
 }
 
+
 .itemContainer{
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
     width: 1000px;
@@ -49,7 +54,7 @@ p {
     padding: 20px 0px;
 
 }
-.itemContainer .item-image{
+.itemContainer{
   width: 200px;
   height: 200px;
   margin: 0 auto;

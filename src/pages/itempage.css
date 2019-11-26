@@ -4,7 +4,15 @@
 }
 
 .item-price{
-  padding-left: 10px;
 }
+
+.itemPage {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .itemPage-footer{
+    display: flex;
+    justify-content: flex-end;
+    flex-basis: 100%;
 }

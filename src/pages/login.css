@@ -46,11 +46,10 @@ html .login-wrap .form a p {
   padding-bottom: 10px;
 }
 html .login-wrap .form button {
-  background: red;
+  background: #d41d46;
   border: none;
   color: white;
   font-size: 18px;
-  font-weight: 200;
   cursor: pointer;
   transition: box-shadow 0.4s ease;
 }

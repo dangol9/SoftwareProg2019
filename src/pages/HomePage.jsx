@@ -7,6 +7,8 @@ import SortDropdown from "../components/SortDropdown.jsx";
 import {connect} from "react-redux";
 import {getItems} from "../store/actions";
 import {ItemProps} from "./CartPage.jsx";
+import headerHero from "../../public/images/liliac.jpg";
+import * as selectors from "../store/selectors";
 
 
 class HomePage extends React.PureComponent{
@@ -78,6 +80,10 @@ componentDidMount(){
     const items = this.getVisibleItems();
     return (
       <>
+        <div className={"hero-header"}>
+        <img src={headerHero}/>
+        <div className={"centered"}>TLU e-pood</div>
+        </div>
 
         <ItemFilters
         allCategories = {this.state.allCategories}
@@ -129,7 +135,7 @@ ItemFilters.propTypes = {
 
 const mapStateToProps = (store) => {
   return {
-    items: store.items,
+    items: selectors.getItems(store),
   };
 };
 

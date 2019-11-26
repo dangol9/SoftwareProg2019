@@ -5,7 +5,7 @@ import {UserPropTypes} from "../store/reducer";
 import FancyButton from "../components/FancyButton.jsx";
 import {userUpdate, tokenUpdate} from "../store/actions";
 import protectedRedirect from "../components/protectedRedirect.jsx";
-
+import * as selectors from "../store/selectors";
 
 class UserPage extends React.PureComponent {
   static propTypes = {
@@ -41,10 +41,8 @@ handleLogout = () => {
 }
 const mapStateToProps = (store) => {
   return {
-    user: store.user,
+    user: selectors.getUser(store),
   };
 };
 
 export default connect(mapStateToProps)(protectedRedirect(UserPage));
-
-//export default authConsumer(protectedRedirect(UserPage));

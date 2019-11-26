@@ -1,0 +1,20 @@
+.modal{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
+
+.modal-inner{
+  min-width: 300px;
+  background: white;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 8px rgba(0,0,0,0.5);
+}

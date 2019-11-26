@@ -12,9 +12,12 @@
   font-size: 17px;
 }
 body {
-  background-color: white
+  background-color: white;
 }
-
+.hero-header img{
+  width:100%;
+  height:330px;
+}
 
 @media only screen and (max-width: 950px) {
    .cf7_custom_style_1 {
@@ -28,4 +31,12 @@ body {
       padding-left: 0;
       padding-right: 0;
    }
+}
+.centered {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  transform: translate(-0%, -50%);
+  color: white;
+  font-size: 80px;
 }

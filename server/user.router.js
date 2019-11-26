@@ -7,7 +7,7 @@ const {authMiddleware} = require("./middlewares");
 
 router.param("userId", (req, res, next, userId) => {
   User.findById(userId, (err, user) => {
-    if(!err || !user) return res.status(500).send("Error user params");
+    if(err || !user) return res.status(500).send("Error user params");
     req.user = user;
     next();
   });
@@ -15,7 +15,7 @@ router.param("userId", (req, res, next, userId) => {
 
 router.param("itemId", (req, res, next, itemId) => {
   Item.findById(itemId, (err, item) => {
-    if(!err || !item) return res.status(500).send("Error item params");
+    if(err || !item) return res.status(500).send("Error item params");
     req.item = item;
     next();
   });
@@ -35,7 +35,7 @@ router.put("/:userId/cart/:itemId", (req, res) => {
       console.log(err);
       return res.status(500).send("Error cart save");
     }
-    res.send(req.user);
+    res.send(200);
   });
 });
 
@@ -50,7 +50,7 @@ router.delete("/:userId/cart/:itemId", (req, res) => {
       console.log(err);
       return res.status(500).send("Error cart delete");
     }
-    res.send(req.user);
+    res.send(200);
   });
 });
 

@@ -1,8 +1,6 @@
-// const USER_SUCCESS = "USER_SUCCESS";
-// const USER_REQUEST = "USER_REQUEST";
-// const USER_FAILURE = "USER_FAILURE";
-
-
+import * as services from "../services.js";
+import * as selectors from "./selectors";
+import {toast} from "react-toastify";
 export const ITEMS_SUCCESS = "ITEMS_SUCCESS";
 export const ITEMS_REQUEST = "ITEMS_REQUEST";
 export const ITEMS_FAILURE = "ITEMS_FAILURE";
@@ -11,18 +9,54 @@ export const ITEM_REMOVED = "ITEM_REMOVED";
 export const USER_UPDATE = "USER_UPDATE";
 export const TOKEN_UPDATE = "TOKEN_UPDATE";
 
+export const removeItem = (itemId) => (dispatch, getState) => {
+  const store = getState();
+  const token = selectors.getToken(store);
+  const userId = selectors.getUser(store)._id;
+  services.removeItemFromCart({itemId, token, userId})
+  .then( () => {
+    toast.success("Toode eemaldatud edukalt");
+    dispatch({
+      type: ITEM_REMOVED,
+      payload: itemId,
+    });
+  })
+  .catch( err => {
+    console.log("err: ", err);
+    toast.error("Toote eemaldamise error");
+  });
+};
+
+
+
+export const addItem = (item) => (dispatch, getState) => {
+  const store = getState();
+  const itemId = item._id;
+  const token = selectors.getToken(store);
+  const userId = selectors.getUser(store)._id;
+  services.addItemToCart({itemId, token, userId})
+  .then( () => {
+    dispatch({
+      type: ITEM_ADDED,
+      payload: itemId,
+    });
+  })
+  .catch( err => {
+    console.log("err: ", err);
+    toast.error("Toote lisamise error");
+  });
+};
+
 export const getItems = () => (dispatch, getState) => {
-  if(getState().items.length > 0) return null;
+  const store = getState();
+  if(selectors.getItems(store).length > 0) return null;
   dispatch(itemsRequest());
-  return fetch("/api/v1/items")
-  .then(res =>{
-    return res.json();
-    })
+  return services.getItems()
   .then(items => {
     dispatch(itemsSuccess(items));
   })
   .catch(err => {
-    console.error(err);
+    console.log(err);
     dispatch(itemsFailure());
   });
 };
@@ -43,17 +77,6 @@ export const itemsFailure = () => ({
   type: ITEMS_FAILURE,
 });
 
-
-export const removeItem = (_id) => ({
-  type: ITEM_REMOVED,
-  payload: _id,
-});
-
-
-export const addItem = (item) => ({
-  type: ITEM_ADDED,
-  payload: item,
-});
 
 export const userUpdate = (user) => ({
   type: USER_UPDATE,
