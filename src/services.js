@@ -82,3 +82,30 @@ export const signup = ({email, password}) => {
     return res.json();
   });
 };
+
+export const getPayments = ({userId, token}) => {
+  return fetch(`${basePath}/users/${userId}/payments`, {
+    method: "GET",
+    headers:{
+      "Authorization": `Bearer ${token}`
+    },
+  })
+  .then(res => {
+    if(!res.ok) throw "getPayments failed!";
+    return res.json();
+  });
+};
+
+export const checkout = ({stripeToken, userId, token}) => {
+  return fetch(`${basePath}/users/${userId}/checkout`, {
+    method: "POST",
+    headers:{
+      "content-type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(stripeToken)
+  })
+  .then(res => {
+    if(!res.ok) throw "checkout failed!";
+  });
+};

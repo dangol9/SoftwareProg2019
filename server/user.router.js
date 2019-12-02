@@ -4,6 +4,9 @@ const User = require("./user.model.js");
 const bcrypt = require("bcrypt");
 const Item = require("./item.model.js");
 const {authMiddleware} = require("./middlewares");
+const stripe = require('stripe')(process.env.stripe_secret);
+const Payment = require("./payments.model");
+
 
 router.param("userId", (req, res, next, userId) => {
   User.findById(userId, (err, user) => {
@@ -72,7 +75,6 @@ router.delete("/", (req, res) =>{
     console.log("Success delete all users");
     res.send(204);
   });
-
 });
 
 
@@ -81,7 +83,46 @@ function handleError(err, res){
   res.status(500).send(err);
 }
 
+router.get("/:userId/payments", authMiddleware, (req, res) => {
+  Payment.getUserPayments(req.user._id)
+  .then( docs => {
+    res.send(docs);
+  })
+  .catch( err =>{
+    console.log(err);
+    res.send(500);
+  })
+});
 
+
+
+
+router.post("/:userId/checkout", authMiddleware, async (req, res) => {
+  const {err, amount} = await req.user.getCartAmount();
+  if(error) {
+    console.log(error);
+    return res.send(500);
+  }
+  req.user.createPayment(amount)
+  .then(() => {
+    return req.user.clearCart();
+  })
+  .then(() => {
+    return stripe.charges.create({
+      amount: amount *100,
+      currency : "eur",
+      source: req.body.id,
+    });
+  })
+  .then( stripeResponse =>{
+    console.log(stripeResponse);
+    res.send(200);
+  })
+  .catch( (err) => {
+    console.log(err);
+    res.send(500);
+  });
+});
 
 
 module.exports = router;

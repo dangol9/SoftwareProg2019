@@ -9,6 +9,7 @@ import {toast} from "react-toastify";
 import * as selectors from "../store/selectors";
 import * as services from "../services.js";
 import Modal from "../components/Modal.jsx";
+import Stripe from "../components/Stripe.jsx";
 
 class CartPage extends React.PureComponent {
   static propTypes = {
@@ -19,6 +20,7 @@ class CartPage extends React.PureComponent {
 
   state = {
     cartItems: [],
+    isModalOpen: false,
   };
 
   componentDidMount() {
@@ -35,17 +37,17 @@ componentDidUpdate(prevProps) {
 }
 
 fetchItems = () => {
-  const promises = this.props.cartItemIds.map(
-    itemId =>
+   const promises = this.props.cartItemIds.map(
+   itemId =>
     services.getItem({itemId}
     ));
     Promise.all(promises).then( items => {
-      this.setState({
-        cartItems: items,
-      });
-    }).catch(err => {
-      console.log(err);
-      toast.error("Failed fetching items");
+    this.setState({
+      cartItems: items,
+    });
+  }).catch(err => {
+    console.log(err);
+     toast.error("Failed fetching items");
     });
 };
 
@@ -63,14 +65,22 @@ handleTrash = (_id) => {
 };
 
 handleModal = () => {
+  this.setState({
+    isModalOpen: !this.state.isModalOpen,
+  });
+};
 
+handleSubmit = () => {
+  this.handleModal();
 };
 
 render(){
-  const {sum, tax} = this.calcNumbers();
+  const {sum} = this.calcNumbers();
   return (
     <>
-    <Modal />
+    <Modal open={this.state.isModalOpen} onClose = {this.handleModal}>
+    <Stripe sum={sum} onSubmit={this.handleSubmit}/>
+    </Modal>
     <div className={"spacer"}>
     <h1>My Cart</h1>
       <div className={"box cart"}>
@@ -79,26 +89,28 @@ render(){
           rows={this.state.cartItems}
         />
     </div>
-    <div className={"box cart-summary"}>
-      <table>
-        <tbody>
-        <div className={"table-box"}>
-        <tr><td>Summa:</td><td>{sum} eur</td></tr>
-        <tr><td>Maksud:</td><td>{tax} eur</td></tr>
-        <tr><td>Kokku:</td><td>{tax + sum} eur</td></tr>
-        </div>
-        </tbody>
-    </table>
-    <tr>
-    </tr>
-    <tr>
-    <td>
-          <FancyButton onClick={this.handleModal}>
-          Continue
-          </FancyButton>
-        </td>
-        </tr>
-      </div>
+    {this.state.cartItems.length > 0 &&
+        <div className={"box cart-summary"}>
+          <table>
+            <tbody>
+            <div className={"table-box"}>
+            <tr><td>Summa:</td><td>{sum} eur</td></tr>
+            <tr><td>Kokku:</td><td>{sum} eur</td></tr>
+            </div>
+            </tbody>
+          </table>
+            <tr>
+            </tr>
+            <tr>
+            <td>
+              <FancyButton onClick={this.handleModal}>
+              Continue
+              </FancyButton>
+            </td>
+            </tr>
+          </div>
+    }
+
     </div>
   </>
     );

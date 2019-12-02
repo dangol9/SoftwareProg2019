@@ -28,6 +28,8 @@ router.post("/verify", (req, res)=>{
     res.status(200).send(decoded);
   });
 });
+
+
 //LOGIN
 router.post("/login",
   userController.login

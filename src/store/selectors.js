@@ -6,6 +6,12 @@ export const getUser = (store) => {
   return store.user;
 };
 
+export const getUserId = (store) => {
+  const user = getUser(store);
+  if(!user) return null;
+  return user._id;
+};
+
 
 export const getCart = (store) => {
   if(!store.user) return [];

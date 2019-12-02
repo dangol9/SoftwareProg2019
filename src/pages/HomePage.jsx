@@ -7,7 +7,6 @@ import SortDropdown from "../components/SortDropdown.jsx";
 import {connect} from "react-redux";
 import {getItems} from "../store/actions";
 import {ItemProps} from "./CartPage.jsx";
-import headerHero from "../../public/images/liliac.jpg";
 import * as selectors from "../store/selectors";
 
 
@@ -81,7 +80,7 @@ componentDidMount(){
     return (
       <>
         <div className={"hero-header"}>
-        <img src={headerHero}/>
+        <img src="/static/images/liliac.jpg"/>
         <div className={"centered"}>TLU e-pood</div>
         </div>
 

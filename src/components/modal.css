@@ -11,10 +11,34 @@
 .modal-inner{
   min-width: 300px;
   background: white;
-  max-width: 300px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 50px;
   padding: 25px;
   border-radius: 5px;
   box-shadow: 1px 2px 8px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.modal-inner .icon {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.modal-inner .icon:hover {
+  opacity: 0.5;
+}
+
+
+.modal .open {
+  display: block;
+}
+
+.modal:not(.open){
+  display: none;
 }

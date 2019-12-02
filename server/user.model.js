@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
-
+const Item = require("./item.model");
+const Payment = require("./payments.model");
 
 const userSchema = new mongoose.Schema({
   email: {type: String, required:true, unique: true},
@@ -47,6 +47,39 @@ userSchema.statics.signup = function({email, password}){
     });
   });
 };
+
+userSchema.methods.createPayment = function(amount){
+
+const payment = new Payment({
+      amount,
+      userId: this._id,
+      cart: this.cart,
+    });
+return new Promise( (resolve, reject) => {
+  payment.save( (err) =>{
+    if(err){
+      console.log(err);
+      return reject("payment creation failed");
+    }
+    resolve("Success");
+  });
+ });
+};
+
+
+userSchema.methods.clearCart = function(){
+  return new Promise( (resolve, reject) => {
+  this.cart = [];
+  this.save( err => {
+    if(err){
+      console.log(err);
+      return reject("Failed emptyCart");
+    }
+    return resolve("Success");
+  });
+ });
+};
+
 
 const User = mongoose.model("User", userSchema);
 
